@@ -1,0 +1,97 @@
+<!--login.html-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SavvyAI - Uncover Your Perfect Career Trajectory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body class="light-mode">
+    
+    {% include 'header.html' %}
+
+    <div id="alert-message" class="alert-message" style="display: none;"></div>
+
+    <section class="hero">
+        <div class="container" style="display: flex;">
+            <div class="left-section" style="flex: 1; padding: 20px; display: flex; justify-content: center; align-items: center;">
+                <div class="left-image">
+                    <img src="{{ url_for('static', filename='assets/images/about-left-image.png') }}" alt="Career Guidance" style="width: 80%; height: auto;">
+                </div>
+            </div>
+
+            <div class="signup-form">
+                <div class="auth-form">
+                    <h2 id="form-header">Sign Up</h2>
+                    <div class="login_panel">
+                        <span id="toggleAuthMessage">Already have an account?
+                            <span class="login_class" onclick="showLoginPrompt();" style="cursor:pointer;">Log In</span>
+                        </span>
+                    </div>
+
+                    <p class="or">OR</p>
+                    <form id="signupForm" method="post">
+                        <div class="form-group">
+                            <label for="fullname">Full Name *</label>
+                            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                            <span id="togglePassword" class="eye-icon">
+                                <i id="eyeIcon" class="fas fa-eye"></i>
+                            </span>
+                        </div>
+                        <button type="submit" class="signup-btn">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="login-form" style="display: none;"> <!-- Hide login form initially -->
+                <div class="auth-form">
+                    <h2 id="form-header">Log In</h2>
+                    <div class="login_panel">
+                        <span id="toggleAuthMessage">Don't have an account?
+                            <span class="login_class" onclick="showSignUpForm();" style="cursor:pointer;">Sign Up</span>
+                        </span>
+                    </div>
+
+                    <p class="or">OR</p>
+                    <form id="loginForm" method="post">
+                        <div class="form-group">
+                            <label for="login-email">Email *</label>
+                            <input type="email" id="login-email" name="login-email" placeholder="example@domain.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password *</label>
+                            <input type="password" id="login-password" name="login-password" placeholder="Enter your password" required>
+                            <span id="togglePasswordLogin" class="eye-icon">
+                                <i id="eyeIconLogin" class="fas fa-eye"></i>
+                            </span>
+                        </div>
+                        <button type="submit" class="login-btn signup-btn">Log In</button> <!-- Same style as sign-up -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="banner-images">
+        <img src="{{ url_for('static', filename='assets/images/baner-dec-left.png') }}" alt="Left Banner" class="left-banner">
+        <img src="{{ url_for('static', filename='assets/images/baner-dec-right.png') }}" alt="Right Banner" class="right-banner">
+    </div>
+    
+
+    <script src="../static/scripts/header.js"></script>
+    <script src="../static/scripts/login.js"></script>
+</body>
+</html>

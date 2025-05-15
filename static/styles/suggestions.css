@@ -1,0 +1,300 @@
+:root {
+    --primary-color: #303134;
+    --secondary-color: #8ab4f8;
+    --tertiary-color: #FF416C;
+    --card-text-color: yellow;
+    --text-color: #eaeaea;
+    --bg-color: linear-gradient(135deg, #181818 0%, #333 100%);
+    --card-bg-color: #303134;
+    --course-bg-color: #555555;
+    --autofill-bg: #3c4043;
+    --input-bg-color: #333;
+    --border-color: #555555;
+    --secondary-color-rgb: 138, 180, 248;
+}
+
+body.light-mode {
+    --primary-color: #ffffff;
+    --secondary-color: #1a73e8;
+    --tertiary-color: #d93025;
+    --card-text-color: black;
+    --text-color: #202124;
+    --bg-color: linear-gradient(135deg, #f8f9fa 0%, #dbe0e4 100%);
+    --card-bg-color: #ffffff;
+    --autofill-bg: #eaeaea;
+    --input-bg-color: #f1f3f4;
+    --course-bg-color: #dadce0;
+    --border-color: #dadce0;
+    --secondary-color-rgb: 26, 115, 232;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.career-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.career-card {
+    background: var(--card-bg-color);
+    border-radius: 15px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.career-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--secondary-color) 0%, 
+        var(--tertiary-color) 50%, 
+        var(--secondary-color) 100%);
+    background-size: 200% 100%;
+    animation: gradientSlide 3s linear infinite;
+}
+
+.career-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.career-title {
+    color: var(--secondary-color);
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.roadmap-list {
+    list-style: none;
+    padding: 0;
+}
+
+.roadmap-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    padding-left: 25px;
+}
+
+.roadmap-list li:before {
+    content: '➤';
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    color: var(--tertiary-color);
+}
+
+/* Modal base */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center the content */
+    align-items: center; /* Horizontally center the content */
+    background: var(--card-bg-color);
+    width: 90%;
+    max-width: 540px;
+    border-radius: 20px;
+    padding: 8px;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+/* Modal header and title */
+.modal-content h2 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    padding: 24px 32px;
+    margin: 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Close button */
+.close-modal {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 24px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    background-color: var(--border-color);
+}
+
+/* Course grid layout */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    padding: 32px;
+    justify-items: center;  /* Centers items horizontally */
+    align-items: center;    /* Centers items vertically */
+}
+
+/* Course items */
+.course-item {
+    background: var(--course-bg-color);
+    border-radius: 12px;
+    overflow: hidden;
+    width: 220px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Course links */
+.course-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    text-decoration: none;
+    color: var(--text-color);
+    gap: 16px;
+}
+
+/* Course images */
+.course-link img {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+/* Course titles */
+.course-link h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--secondary-color);
+    border: none;
+    padding: 0;
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+    .course-grid {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 16px;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.25rem;
+        padding: 20px 24px;
+    }
+    
+    .close-modal {
+        right: 16px;
+        top: 16px;
+    }
+}
+
+@keyframes gradientSlide {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+@media (max-width: 768px) {
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, 
+        var(--secondary-color) 0%, 
+        var(--tertiary-color) 50%, 
+        var(--secondary-color) 100%);
+    background-size: 200% 100%;
+    animation: gradientSlide 3s linear infinite;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+/* Center the OK button in the modal */
+.modal-content .btn {
+    margin-top: 20px;  /* Optional: Add some spacing from other content */
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-content .btn:hover {
+    background-color: var(--tertiary-color);
+}
+
+.modal-content p {
+margin-left: 10px;
+}

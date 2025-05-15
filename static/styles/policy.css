@@ -1,0 +1,237 @@
+:root {
+    --primary-color: #303134;
+    --secondary-color: #8ab4f8;
+    --tertiary-color: #FF416C;
+    --card-text-color: yellow;
+    --text-color: #eaeaea;
+    --bg-color: linear-gradient(135deg, #181818 0%, #333 100%);
+    --card-bg-color: #303134;
+    --policy-card-bg-color: #444;
+    --autofill-bg: #3c4043;
+    --input-bg-color: #333;
+    --border-color: #555555;
+    --secondary-color-rgb: 138, 180, 248;
+}
+
+body.light-mode {
+    --primary-color: #ffffff;
+    --secondary-color: #1a73e8;
+    --tertiary-color: #d93025;
+    --card-text-color: black;
+    --text-color: #202124;
+    --bg-color: linear-gradient(135deg, #f8f9fa 0%, #dbe0e4 100%);
+    --card-bg-color: #ffffff;
+    --policy-card-bg-color: #f1f3f4;
+    --autofill-bg: #eaeaea;
+    --input-bg-color: #f1f3f4;
+    --border-color: #dadce0;
+    --secondary-color-rgb: 26, 115, 232;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    overflow: auto;
+    margin-left: 120px;
+}
+
+html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+h1 {
+    background: linear-gradient(90deg, var(--secondary-color), var(--tertiary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.policy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.policy-card {
+    background: var(--policy-card-bg-color);
+    border-radius: 15px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.policy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.policy-card h2 {
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.policy-card p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.policy-card a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.policy-card a:hover {
+    color: var(--tertiary-color);
+}
+
+/* Modal base */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center the content */
+    align-items: center; /* Horizontally center the content */
+    background: var(--card-bg-color);
+    width: 90%;
+    max-width: 540px;
+    border-radius: 20px;
+    padding: 8px;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+/* Modal header and title */
+.modal-content h2 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    padding: 24px 32px;
+    margin: 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Close button */
+.close-modal {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 24px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    background-color: var(--border-color);
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+    .policy-grid {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 16px;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.25rem;
+        padding: 20px 24px;
+    }
+    
+    .close-modal {
+        right: 16px;
+        top: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .policy-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, 
+        var(--secondary-color) 0%, 
+        var(--tertiary-color) 50%, 
+        var(--secondary-color) 100%);
+    background-size: 200% 100%;
+    animation: gradientSlide 3s linear infinite;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+/* Keyframes for the gradient animation */
+@keyframes gradientSlide {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}

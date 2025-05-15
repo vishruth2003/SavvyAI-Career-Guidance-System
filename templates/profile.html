@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - SavvyAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/profile.css') }}">
+</head>
+<body class="light-mode">
+    {% include 'header.html' %}
+
+    <!-- Hidden element to store user data -->
+    <div id="user-data" style="display: none;">{{ user | tojson | safe }}</div>
+
+    <section class="main-content">
+        <div class="greeting" role="heading" aria-level="2">Hello, <span class="gradient-text">{{ user.fullName if user else 'Guest' }}</span></div>
+        <div class="question" role="heading" aria-level="3">Tell us more about yourself!!</div>
+        <div class="user_info">
+            <div class="container">
+                <form id="multi-step-form">
+                    <div class="form-step active" id="step-1">
+                        <h2>Basic Information</h2>
+                        <label>
+                            <input type="radio" name="status" value="student" required>
+                            Student
+                        </label>
+                        <label>
+                            <input type="radio" name="status" value="professional">
+                            Working Professional
+                        </label>
+                        <div>
+                            <label for="age">Age: <span id="age-value">20</span></label>
+                            <input type="range" id="age" min="15" max="100" value="20">
+                        </div>
+                        <div class="buttons">
+                            <button type="button" class="next-btn" id="next-btn">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step-2">
+                        <h2>Education and Skills</h2>
+                        <label for="education">Highest Level of Education:</label>
+                        <select id="education">
+                            <option value="" selected disabled>Select your education level</option>
+                            <option value="highschool">High School</option>
+                            <option value="bachelor">Bachelor's</option>
+                            <option value="master">Master's</option>
+                            <option value="phd">PhD</option>
+                        </select>
+
+                        <!-- High School Syllabus Dropdown -->
+                        <div id="highschool-syllabus" class="dropdown-field" style="display: none;">
+                            <label for="syllabus">Syllabus:</label>
+                            <select id="syllabus">
+                                <option value="icse">ICSE</option>
+                                <option value="cbse">CBSE</option>
+                                <option value="stateboard">State Board</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <input type="text" id="syllabus-other" placeholder="Enter syllabus" style="display: none;">
+                        </div>
+
+                        <!-- Bachelor's Specialization and Course -->
+                        <div id="bachelors-specialization" class="dropdown-field" style="display: none;">
+                            <label for="bachelorSpecialization">Bachelor's Specialization:</label>
+                            <select id="bachelorSpecialization">
+                                <option value="" selected disabled>Select specialization</option>
+                                <option value="be">BE / BTech</option>
+                                <option value="bsc">BSc</option>
+                                <option value="bcom">BCom</option>
+                                <option value="bca">BCA</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <input type="text" id="bachelor-specialization-other" placeholder="Enter specialization" style="display: none;">
+                        </div>
+
+                        <div id="bachelors-course" class="dropdown-field" style="display: none;">
+                            <label for="bachelorCourse">Bachelor's Course:</label>
+                            <select id="bachelorCourse">
+                                <option value="" selected disabled>Select course</option>
+                            </select>
+                            <input type="text" id="bachelor-course-other" placeholder="Enter course" style="display: none;">
+                        </div>
+
+                        <!-- Master's Specialization and Course -->
+                        <div id="masters-specialization" class="dropdown-field" style="display: none;">
+                            <label for="masterSpecialization">Master's Specialization:</label>
+                            <select id="masterSpecialization">
+                                <option value="" selected disabled>Select specialization</option>
+                                <option value="me">ME</option>
+                                <option value="mtech">MTech</option>
+                                <option value="mcom">MCom</option>
+                                <option value="mca">MCA</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <input type="text" id="master-specialization-other" placeholder="Enter specialization" style="display: none;">
+                        </div>
+
+                        <div id="masters-course" class="dropdown-field" style="display: none;">
+                            <label for="masterCourse">Master's Course:</label>
+                            <select id="masterCourse">
+                                <option value="" selected disabled>Select course</option>
+                            </select>
+                            <input type="text" id="master-course-other" placeholder="Enter course" style="display: none;">
+                        </div>
+
+                        <!-- PhD Specialization Dropdown -->
+                        <div id="phd-specialization" class="dropdown-field" style="display: none;">
+                            <label for="phdSpecialization">PhD Specialization:</label>
+                            <select id="phdSpecialization">
+                                <option value="engineering">Engineering</option>
+                                <option value="science">Science</option>
+                                <option value="arts">Arts</option>
+                                <option value="management">Management</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <input type="text" id="phd-specialization-other" placeholder="Enter specialization" style="display: none;">
+                        </div>
+
+                        <label for="hobbies">Hobbies</label>
+                        <input type="text" id="hobbies" required>
+                        <label for="skills">Key Skills</label>
+                        <input type="text" id="skills" required>
+                        <div class="buttons">
+                            <button type="button" class="prev-btn" id="prev-btn">Back</button>
+                            <button type="button" class="next-btn" id="next-btn">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step-3">
+                        <h2>Work Experience</h2>
+                        <label for="workExperience">Describe your work experience:</label>
+                        <textarea id="workExperience" name="workExperience" required></textarea>
+                        <div class="buttons">
+                            <button type="button" class="prev-btn" id="prev-btn">Back</button>
+                            <button type="submit" class="submit-btn" id="submit-btn">Finish</button>
+                        </div>
+                    </div>                    
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="../static/scripts/header.js"></script>
+    <script src="../static/scripts/profile.js"></script>
+</body>
+</html>

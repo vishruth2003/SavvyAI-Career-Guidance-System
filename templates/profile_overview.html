@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/profile_overview.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <script id="user-data" type="application/json">
+        {{ user | tojson }}
+    </script>
+
+    {% include 'header.html' %}
+    {% include 'sidebar.html' %}
+    
+    <div class="container">
+        <div class="profile-preview">
+            <div class="card">
+                <div class="card-header">
+                    <h2 id="profile-name"></h2>
+                    <p id="profile-email"></p>
+                </div>
+                <div class="card-content">
+                    <div class="profile-info">
+                        <h3>Current Role</h3>
+                        <p id="current-role"></p>
+                    </div>
+                    <div class="profile-info">
+                        <h3>Hobbies</h3>
+                        <p id="hobbies-preview"></p>
+                    </div>
+                    <div class="profile-info">
+                        <h3>Skills</h3>
+                        <div id="skills-container" class="skills-container"></div>
+                    </div>
+                    <button id="view-full-profile" class="btn btn-primary">View Profile Card</button>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="overview">Overview</button>
+                <button class="tab-btn" data-tab="aptitude">Aptitude</button>
+                <button class="tab-btn" data-tab="recommendations">Recommendations</button>
+            </div>
+            <div id="tab-content" class="tab-content">
+                <div id="overview" class="tab-pane active">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Edit Profile</h2>
+                            <p>Update your professional information</p>
+                        </div>
+                        <div class="card-content">
+                            <form id="profile-form" class="profile-form">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="name">Full Name</label>
+                                        <input class="cols" type="text" id="name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="age">Age</label>
+                                        <input type="number" id="age" name="age">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="currentStatus">Current Status</label>
+                                        <input type="text" id="currentStatus" name="currentStatus">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="education">Highest Level of Education</label>
+                                    <input type="text" id="education" name="education">
+                                </div>
+                                <div class="form-group">
+                                    <label for="hobbies">Hobbies</label>
+                                    <input type="text" id="hobbies" name="hobbies">
+                                </div>
+                                <div class="form-group">
+                                    <label for="githubLink">GitHub Link</label>
+                                    <input type="url" id="githubLink" name="githubLink">
+                                </div>
+                                <div class="form-group">
+                                    <label for="linkedinLink">LinkedIn Link</label>
+                                    <input type="url" id="linkedinLink" name="linkedinLink">
+                                </div>
+                                <div class="form-group">
+                                    <label for="workExperience">Work Experience</label>
+                                    <textarea id="workExperience" name="workExperience" rows="4"></textarea>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="skills">Skills (comma-separated)</label>
+                                    <input type="text" id="skills" name="skills">
+                                </div>
+                                <div id="education-details">
+                                    <h3>Education Details</h3>
+                                    <div class="form-group">
+                                        <label for="specialization">Specialization</label>
+                                        <input type="text" id="specialization" name="specialization">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="course">Course</label>
+                                        <input type="text" id="course" name="course">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="aptitude" class="tab-pane">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Aptitude Assessment</h2>
+                            <p>Your performance in technical and general aptitude</p>
+                        </div>
+                        <div class="card-content">
+                            <canvas id="aptitude-chart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div id="recommendations" class="tab-pane">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Career Recommendations</h2>
+                            <p>Personalized career options based on your profile</p>
+                        </div>
+                        <div class="card-content">
+                            <div id="recommendations-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="full-profile-modal" class="modal">
+        <div class="modal-content">
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='scripts/profile_overview.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/sidebar.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/header.js') }}"></script>
+</body>
+</html>

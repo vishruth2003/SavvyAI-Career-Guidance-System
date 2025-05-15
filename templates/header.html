@@ -1,0 +1,21 @@
+<header>
+    <div class="header-container">
+        {% if show_hamburger_menu %}
+            <i class='bx bx-menu' id="hamburger-menu"></i>
+        {% endif %}
+        <h1><span class="savvy">Savvy</span><span class="ai">AI</span></h1>
+    </div>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+
+    <div class="header-buttons">
+        <button id="mode-toggle" class="mode-toggle" aria-label="Switch to light mode">
+            <span class="light-mode-emoji">☀️</span>
+            <span class="dark-mode-emoji">🌙</span>
+        </button>
+        <div id="profile-icon" class="profile-icon" style="display: none;"></div> <!-- Profile icon -->
+        <div id="profile-modal" class="profile-modal" style="display: none;">
+            <p id="welcome-message"></p>
+            <button class="logout-btn" id="logout-btn">Logout</button>  
+        </div>
+    </div>
+</header>

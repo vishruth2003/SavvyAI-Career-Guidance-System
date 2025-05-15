@@ -1,0 +1,67 @@
+<!-- Sidebar -->
+<div class="sidebar">
+    <ul class="nav-list">
+        <li>
+            <a href="{{ url_for('profile_overview') }}">
+                <i class='bx bx-user'></i>
+                <span class="links_name">Profile</span>
+            </a>
+            <span class="tooltip">Profile</span>
+        </li>
+        <li>
+            <a href="{{ url_for('learning') }}">
+                <i class='bx bx-chalkboard'></i> <!-- Best Icon for Learning -->
+                <span class="links_name">Learning</span>
+            </a>
+            <span class="tooltip">Learning</span>
+        </li>
+        <li>
+            <a href="{{ url_for('roadmap') }}">
+                <i class='bx bx-directions'></i> <!-- Best Icon for Roadmap -->
+                <span class="links_name">Roadmap</span>
+            </a>
+            <span class="tooltip">Roadmap</span>
+        </li>
+        <li>
+            <a href="{{ url_for('community') }}">
+                <i class='bx bxs-group'></i> <!-- Best Icon for Connect -->
+                <span class="links_name">Connect</span>
+            </a>
+            <span class="tooltip">Connect</span>
+        </li>
+        <li>
+            <a href="{{ url_for('feedback_page') }}">
+                <i class='bx bx-message-alt-detail'></i>
+                <span class="links_name">Feedback</span>
+            </a>
+            <span class="tooltip">Feedback</span>
+        </li>
+        <li>
+            <a href="{{ url_for('policies') }}">
+                <i class='bx bx-book-content'></i>
+                <span class="links_name">Policies</span>
+            </a>
+            <span class="tooltip">Policies</span>
+        </li>
+        <li>
+            <a href="{{ url_for('linkdin') }}">
+                <i class='bx bxl-linkedin'></i>
+                <span class="links_name">Trends</span>
+            </a>
+            <span class="tooltip">Trends</span>
+        </li>
+        <li>
+            <a id="logout-link">
+                <i class='bx bx-log-out'></i>
+                <span class="links_name">Log Out</span>
+            </a>
+            <span class="tooltip">Log Out</span>
+        </li>
+    </ul>
+</div>
+
+<!-- Boxicons CDN (Make sure to include this if you haven't already) -->
+<link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+
+<!-- Include your custom sidebar CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}">

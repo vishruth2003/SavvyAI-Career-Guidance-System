@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Path Resources</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/learning.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <script id="user-data" type="application/json">
+        {{ user | tojson }}
+    </script>
+
+    {% include 'header.html' %}
+    {% include 'sidebar.html' %}
+
+    <h1 class="learning-container">Learning Resources</h1>
+    <div class="container" id="container">
+        <div class="learning-resources">
+
+            <!-- NPTEL Section -->
+<div class="resource-section">
+    <h3>NPTEL Courses</h3>
+    {% for career_name, courses in nptel_courses.items() %}
+        <div class="career-section">
+            <h4 class="career-title">{{ career_name }}</h4>
+            {% if courses %}
+            <div class="resource-grid">
+                {% for course in courses %}
+                    <div class="resource-card course-card" 
+                         data-course='{{ course|tojson|safe }}'>
+                         <div class="view-more" onclick="showCourseDetails(this.parentElement.dataset.course)">
+                        <h4>{{ course.name }}</h4>
+                        <div class="course-info">
+                            <p><strong>Instructor:</strong> {{ course.instructor }}</p>
+                            <p><strong>Duration:</strong> {{ course.duration }}</p>
+                            {% if course.content %}
+                                <p class="course-description">{{ (course.content[:100] ~ '...') if course.content|length > 100 else course.content }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="button-group">
+                            {% if course.course_link %}
+                                <a href="{{ course.course_link }}" target="_blank" class="course-btn">Explore Course</a>
+                            {% endif %}
+                            {% if course.nptel_url %}
+                                <a href="{{ course.nptel_url }}" target="_blank" class="course-btn">NPTEL Page</a>
+                            {% endif %}
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="resource-card" style="max-width: 500px;">
+              <p>No courses are currently available for {{ career_name }}.<br> Please explore the following links for more resources:</p>
+              <div class="button-group">
+                  <a href="https://swayam.gov.in/" target="_blank" class="course-btn">Explore Courses</a>
+                  <a href="https://nptel.ac.in/" target="_blank" class="course-btn">NPTEL Page</a>
+              </div>
+          </div>
+          
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Modal for course details -->
+<div id="courseModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalCourseName"></h4>
+                <button type="button" class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Discipline:</strong> <span id="modalDiscipline"></span></p>
+                <p><strong>Instructor:</strong> <span id="modalInstructor"></span></p>
+                <p><strong>Institute:</strong> <span id="modalInstitute"></span></p>
+                <p><strong>Duration:</strong> <span id="modalDuration"></span></p>
+                <p><strong>Dates:</strong> <span id="modalDates"></span></p>
+                <p><strong>Description:</strong></p>
+                <p id="modalContent"></p>
+            </div>
+            <div class="modal-footer">
+                <a id="modalCourseLink" href="" target="_blank" class="modal-btn">Explore Course</a>
+                <a id="modalNptelLink" href="" target="_blank" class="modal-btn">NPTEL Page</a>
+            </div>
+        </div>
+    </div>
+</div>
+        
+            <!-- Online Courses Section -->
+            <div class="resource-section">
+                <h3>Online Courses</h3>
+                {% for career_name, courses in careers_courses.items() %}
+                    <div class="career-section">
+                        <h4 class="career-title">{{ career_name }}</h4>
+                        <div class="resource-grid">
+                            <div class="resource-card">
+                                <h4>{{ courses.udemy.title }}</h4>
+                                <p>{{ courses.udemy.description }}</p>
+                                <a href="{{ courses.udemy.link }}" target="_blank" rel="noopener noreferrer">Explore Udemy</a>
+                            </div>
+                            <div class="resource-card">
+                                <h4>{{ courses.coursera.title }}</h4>
+                                <p>{{ courses.coursera.description }}</p>
+                                <a href="{{ courses.coursera.link }}" target="_blank" rel="noopener noreferrer">Explore Coursera</a>
+                            </div>
+                            <div class="resource-card">
+                                <h4>{{ courses.upgrad.title }}</h4>
+                                <p>{{ courses.upgrad.description }}</p>
+                                <a href="{{ courses.upgrad.link }}" target="_blank" rel="noopener noreferrer">Explore Upgrad</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        
+            <!-- YouTube Channels Section -->
+            <div class="resource-section">
+                <h3>YouTube Resources</h3>
+                <div class="resource-grid">
+                    {% for resource in youtube_resources %}
+                        <div class="resource-card">
+                            <h4>{{ resource.title }}</h4>
+                            <p>{{ resource.description }}</p>
+                            <a href="{{ resource.link }}" target="_blank" rel="noopener noreferrer">Watch Tutorials</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>      
+    </div>
+    <script src="{{ url_for('static', filename='scripts/header.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/sidebar.js') }}"></script>
+    <script>
+        function showCourseDetails(courseData) {
+    const course = typeof courseData === 'string' ? JSON.parse(courseData) : courseData;
+    
+    document.getElementById('modalCourseName').textContent = course.name;
+    document.getElementById('modalDiscipline').textContent = course.discipline;
+    document.getElementById('modalInstructor').textContent = course.instructor;
+    document.getElementById('modalInstitute').textContent = course.institute;
+    document.getElementById('modalDuration').textContent = course.duration;
+    document.getElementById('modalDates').textContent = `${course.start_date} - ${course.end_date}`;
+    document.getElementById('modalContent').textContent = course.content;
+    
+    const courseLink = document.getElementById('modalCourseLink');
+    const nptelLink = document.getElementById('modalNptelLink');
+    
+    if (course.course_link) {
+        courseLink.href = course.course_link;
+        courseLink.style.display = 'inline-block';
+    } else {
+        courseLink.style.display = 'none';
+    }
+    
+    if (course.nptel_url) {
+        nptelLink.href = course.nptel_url;
+        nptelLink.style.display = 'inline-block';
+    } else {
+        nptelLink.style.display = 'none';
+    }
+
+    document.getElementById('courseModal').classList.add('show');
+}
+
+        function closeModal() {
+            document.getElementById('courseModal').classList.remove('show');
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('courseModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        </script>
+</body>
+</html>

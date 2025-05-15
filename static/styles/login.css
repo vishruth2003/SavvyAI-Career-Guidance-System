@@ -1,0 +1,827 @@
+/* Root Variables */
+:root {
+    --primary-color: #303134;
+    --secondary-color: #8ab4f8;
+    --tertiary-color: #FF416C;
+    --card-text-color: yellow;
+    --text-color: #eaeaea;
+    --bg-color: linear-gradient(135deg, #181818 0%, #333 100%);
+    --card-bg-color: #303134;
+    --input-bg-color: #333;
+    --border-color: #555555;
+    --secondary-color-rgb: 138, 180, 248;
+    --transition-default: 0.3s ease;
+}
+
+/* Light Mode Variables */
+body.light-mode {
+    --primary-color: #ffffff;
+    --secondary-color: #1a73e8;
+    --tertiary-color: #d93025;
+    --card-text-color: black;
+    --text-color: #202124;
+    --bg-color: linear-gradient(135deg, #f8f9fa 0%, #dbe0e4 100%);
+    --card-bg-color: #ffffff;
+    --input-bg-color: #f1f3f4;
+    --border-color: #ffffff;
+    --secondary-color-rgb: 26, 115, 232;
+}
+
+/* Base Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: var(--bg-color);
+    transition: background-color var(--transition-default), color var(--transition-default);
+}
+
+html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+/* Layout */
+.container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 30px 0;
+}
+
+.hero-text {
+    flex: 1;
+    padding: 100px 50px 0;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.hero-text p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    padding-right: 60px;
+}
+
+/* Form Containers */
+.auth-form-container {
+    flex: 1;
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+
+.login-form {
+    flex: 1;
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 0;
+    font-size: 32px;
+    color: var(--secondary-color);
+}
+
+.signup-form {
+    flex: 1;
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.signup-form h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 0;
+    font-size: 32px;
+    color: var(--secondary-color);
+}
+
+.login-form {
+    flex: 1;
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    max-height: 450px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 0;
+    font-size: 32px;
+    color: var(--secondary-color);
+}
+
+.auth-form-container h2 {
+    text-align: center;
+    margin: 0 0 10px;
+    font-size: 32px;
+    color: var(--secondary-color);
+}
+
+/* Form Elements */
+.form-group {
+    position: relative;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-group input {
+    width: 90%;
+    padding: 8px;
+    font-size: 13px;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--text-color);
+    transition: border-color var(--transition-default);
+}
+
+.form-group input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+/* Radio Groups */
+.radio-group-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.radio-group {
+    flex: 1;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.radio-group input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 50%;
+    margin-right: 10px;
+    display: grid;
+    place-content: center;
+}
+
+.radio-group input[type="radio"]::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 12px 12px var(--secondary-color);
+}
+
+.radio-group input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+/* Social Login */
+.social-container {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--secondary-color) 0%, 
+        var(--tertiary-color) 50%, 
+        var(--secondary-color) 100%);
+    background-size: 200% 100%;
+    animation: gradientSlide 3s linear infinite;
+}
+
+/* Create the gradient border */
+.signup-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--secondary-color) 0%, 
+        var(--tertiary-color) 50%, 
+        var(--secondary-color) 100%);
+    background-size: 200% 100%;
+    animation: gradientSlide 3s linear infinite;
+}
+
+/* Animation keyframes */
+@keyframes gradientSlide {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+.social-container a {
+    border: 1px solid #DDDDDD;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15px;
+    height: 35px;
+    width: 35px;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+    transition: background-color var(--transition-default);
+}
+
+.social-container a:hover {
+    background-color: #ddd;
+}
+
+/* Buttons */
+.button-common {
+    display: inline-block;
+    padding: 12px 30px;
+    margin-top: 20px;
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: opacity var(--transition-default);
+    cursor: pointer;
+}
+
+.button-common:hover {
+    opacity: 0.9;
+}
+
+.signup-btn, .login-btn {
+    display: block;
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 25px;
+    margin: 10px auto 0px;
+    font-size: 18px;
+    text-decoration: none;
+    transition: opacity var(--transition-default);
+    cursor: pointer;
+}
+
+.explore-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: opacity var(--transition-default);
+    cursor: pointer;
+}
+
+/* Disabled Explore Button */
+.explore-btn.disabled {
+    pointer-events: auto;
+    opacity: 0.5;
+    position: relative;
+    cursor: not-allowed;
+}
+
+.explore-btn.disabled .tooltip {
+    visibility: hidden;
+    position: absolute;
+    background-color: var(--tertiary-color);
+    color: #000000;
+    text-align: center;
+    padding: 5px 8px;
+    border-radius: 5px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity var(--transition-default);
+    width: 120px;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+    margin-top: 5px;
+}
+
+.explore-btn.disabled:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 18px;
+    color: var(--text-color);
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Messages */
+.message {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Login Panel Text */
+.login_panel {
+    align-items: flex-start;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.login_class {
+    color: var(--tertiary-color);
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+}
+
+/* Divider */
+.or {
+    margin: 0.5em 0;
+    opacity: 0.5;
+    text-align: center;
+}
+
+/* Eye Icon for Password */
+.eye-icon {
+    cursor: pointer;
+    color: #666;
+    font-size: 1.2em;
+    margin-left: -30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+    }
+
+    .hero-text,
+    .auth-form-container {
+        padding: 20px;
+    }
+
+    .hero-text {
+        padding-top: 30px;
+    }
+
+    .hero-text h1 {
+        font-size: 36px;
+    }
+
+    .radio-group-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Modify alert message */
+.alert-message {
+    position: absolute; /* Change to absolute positioning */
+    top: 80px; /* Adjust as needed for spacing from the top */
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    display: none; /* Hidden by default */
+    min-width: 300px;
+    max-width: 480px;
+    z-index: 1000; /* Ensure it appears on top of other elements */
+}
+
+.success-message {
+    background-color: #d4edda; /* Light green */
+    color: #155724; /* Dark green */
+    border: 2px solid #c3e6cb; /* Darker green border */
+}
+
+.error-message {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red */
+    border: 2px solid #7c0000; /* Darker red border */
+}
+
+.features {
+    padding: 80px 0;
+}
+
+.features h2 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--secondary-color);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background-color: var(--card-bg-color);
+    border-radius: 10px;
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    transition: box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.feature-card img {
+    opacity: 0.6;
+    height: 200px;
+    width: 280px;
+    transition: opacity 0.3s ease-in-out;
+    object-fit: cover;
+}
+
+.feature-card:hover img {
+    opacity: 0.1;
+}
+
+.feature-card-content {
+    position: absolute;
+    bottom: -78%;
+    width: 100%;
+    transition: bottom 0.3s ease-in-out;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.feature-card:hover .feature-card-content {
+    bottom: 0;
+}
+
+.feature-card h3 {
+    color: var(--card-text-color);
+    margin: 0;
+    font-size: 20px;
+}
+
+.feature-card p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #555;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 8px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+
+  /* Style for the banner images */
+.banner-images {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none; /* Allow clicks to pass through the images */
+}
+
+.left-banner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
+}
+
+.right-banner {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
+}
+
+/* Ensure the image can grow and the parent container allows it */
+.left-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure no overflow happens */
+}
+
+.left-image {
+    width: 80%;  /* Make the image container span the full width */
+ /* Prevent image from overflowing */
+}
+
+.left-section .left-image img {
+    width: 100%; /* Ensure the image takes the full width of its parent container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
+/* Increase size of the form */
+.signup-form, .login-form {
+    max-width: 450px;  /* Increase the maximum width */
+    padding: 30px;  /* Increase padding */
+    margin: auto;  /* Center the form */
+}
+
+/* Optional: Adjust the hero section to allow more space for the form */
+.hero .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Optional: Increase the font size of the form headers */
+#form-header {
+    font-size: 2rem;  /* Increase header font size */
+}
+
+/* Optional: Modify input fields to be larger */
+.form-group input {
+    font-size: 1rem;  /* Increase font size of input fields */
+    padding: 10px;
+}
+
+/* Mobile Phone Display */
+@media (max-width: 768px) {
+    /* Hero Section */
+    .hero {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .hero-text {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 32px;
+    }
+
+    .hero-text p {
+        font-size: 16px;
+        padding-right: 0;
+    }
+
+    /* Form Containers */
+    .auth-form-container,
+    .login-form,
+    .signup-form {
+        max-width: 100%;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .auth-form-container h2,
+    .login-form h2,
+    .signup-form h2 {
+        font-size: 24px;
+    }
+
+    /* Form Elements */
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    /* Buttons */
+    .button-common,
+    .signup-btn,
+    .login-btn,
+    .explore-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    /* Social Login */
+    .social-container a {
+        height: 30px;
+        width: 30px;
+        font-size: 16px;
+    }
+
+    /* Features */
+    .features {
+        padding: 40px 20px;
+    }
+
+    .features h2 {
+        font-size: 28px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        height: auto;
+        padding: 20px;
+    }
+
+    .feature-card img {
+        height: auto;
+        width: 100%;
+    }
+
+    .feature-card h3 {
+        font-size: 18px;
+    }
+
+    .feature-card p {
+        font-size: 14px;
+    }
+
+    /* Alert Message */
+    .alert-message {
+        top: 60px;
+        min-width: 280px;
+        max-width: 90%;
+    }
+
+    /* Banner Images */
+    .banner-images {
+        display: none;
+    }
+
+    /* Left Section */
+    .left-section {
+        display: none;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 28px;
+    }
+
+    .hero-text p {
+        font-size: 14px;
+    }
+
+    .auth-form-container h2,
+    .login-form h2,
+    .signup-form h2 {
+        font-size: 20px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+    }
+
+    .form-group input {
+        font-size: 12px;
+    }
+
+    .button-common,
+    .signup-btn,
+    .login-btn,
+    .explore-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .social-container a {
+        height: 25px;
+        width: 25px;
+        font-size: 14px;
+    }
+
+    .features h2 {
+        font-size: 24px;
+    }
+
+    .feature-card h3 {
+        font-size: 16px;
+    }
+
+    .feature-card p {
+        font-size: 12px;
+    }
+}

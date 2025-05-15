@@ -1,0 +1,375 @@
+/* Color Variables */
+:root {
+    --primary-color: #303134;
+    --secondary-color: #8ab4f8;
+    --modal-background: #181818;
+    --card-bg-color:#303134;
+    --tertiary-color: #FF416C;
+    --text-color: #eaeaea;
+    --bg-color: linear-gradient(135deg, #181818 0%, #333 100%);
+    --flowchart-bg-color: #2D4263;
+    --flowchart-hover: #3a5684;
+    --side-container-heading-color: #8ab4f8;
+    --side-container-bg-color: #303134;
+}
+
+body.light-mode {
+    --primary-color: #ffffff;
+    --secondary-color: #1a73e8;
+    --tertiary-color: #d93025;
+    --card-bg-color: #ffffff;
+    --modal-background: #f4f9ff;
+    --text-color: #202124;
+    --bg-color: linear-gradient(135deg, #f8f9fa 0%, #dbe0e4 100%);
+    --flowchart-bg-color: #EED3B1;
+    --flowchart-hover: #F96E2A;
+    --side-container-heading-color: #0070a4;
+    --side-container-bg-color: #FBF8EF;
+}
+
+/* Global Styles */ 
+body { 
+    font-family: 'Poppins', Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+} 
+ 
+/* Layout */ 
+.container { 
+    max-width: 1400px; 
+    margin: 20px auto; 
+    display: grid; 
+    grid-template-columns: minmax(300px, 1fr) minmax(200px, 0.8fr) minmax(300px, 1fr); 
+    gap: 60px; 
+    position: relative; 
+    padding: 20px; 
+} 
+ 
+.body-container {
+    padding: 20px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.middle-column { 
+    display: block; 
+    flex-direction: column; 
+    justify-content: space-around; 
+    min-height: 600px; 
+    position: relative; 
+} 
+
+.gradient-text { 
+    background: linear-gradient(90deg, var(--secondary-color), var(--tertiary-color));
+    -webkit-background-clip: text;
+    font-size: 40px;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    font-weight: bold; 
+} 
+
+.card { 
+    background: var(--side-container-bg-color); 
+    border-radius: 20px; 
+    padding: 25px; 
+    box-shadow: var(--shadow-md); 
+    border: 1px solid rgba(0, 0, 0, 0.05); 
+    margin-bottom: 20px; 
+} 
+ 
+.card:hover { 
+    box-shadow: var(--shadow-lg); 
+    transform: none; /* Remove the transform */ 
+} 
+ 
+/* Update the list animation */ 
+.card ul { 
+    padding-left: 20px; 
+    margin: 0; 
+    opacity: 0; 
+    max-height: 0; 
+    overflow: hidden; 
+    transition: all var(--transition-speed) ease; 
+} 
+ 
+.card.active ul { 
+    opacity: 1; 
+    max-height: 500px; 
+    margin-top: 15px; 
+} 
+.card h3 { 
+    margin: 0;
+    text-align: center;
+    color: var(--side-container-heading-color); 
+    font-size: 1.2rem; 
+    font-weight: 700; 
+} 
+
+.card ul li { 
+    margin-bottom: 12px; 
+    color: var(--text-color); 
+    position: relative; 
+    padding-left: 5px; 
+} 
+ 
+.card ul li::before { 
+    color: var(--primary-color); 
+    position: absolute; 
+    left: -20px; 
+    opacity: 0; 
+    transition: all var(--transition-speed) ease; 
+} 
+ 
+.card.active ul li::before { 
+    opacity: 1; 
+    left: -15px; 
+} 
+ 
+/* Flowchart */ 
+.flowchart-item { 
+    background: var(--flowchart-bg-color); 
+    color: var(--text-color); 
+    text-align: center; 
+    padding: 20px; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    transition: all var(--transition-speed) ease; 
+    margin: 15px 0; 
+    font-weight: 600; 
+    position: relative; 
+    overflow: hidden; 
+    z-index: 2; 
+} 
+ 
+.flowchart-item::before { 
+    left: -6px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+} 
+ 
+.flowchart-item::after { 
+    right: -6px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+} 
+ 
+.flowchart-item:hover { 
+    background: var(--flowchart-hover); 
+    transform: translateY(-3px) scale(1.02); 
+    box-shadow: var(--shadow-lg); 
+} 
+ 
+.flowchart-item:hover::before, 
+.flowchart-item:hover::after { 
+    background: var(--flowchart-bg-color); 
+} 
+
+.arrow { 
+    position: absolute; 
+    pointer-events: none; 
+    opacity: 0; 
+    transition: opacity var(--transition-speed) ease; 
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)); 
+    z-index: 1; 
+} 
+ 
+.arrow path { 
+    stroke: var(--text-color); 
+    stroke-width: 2.5; 
+    stroke-linecap: round; 
+    stroke-dasharray: 1000; 
+    stroke-dashoffset: 1000; 
+    animation: drawArrow 1s ease forwards; 
+} 
+ 
+@keyframes drawArrow { 
+    to { 
+        stroke-dashoffset: 0; 
+    } 
+} 
+/* Responsive Design */ 
+@media (max-width: 1200px) { 
+    .container { 
+        grid-template-columns: minmax(250px, 1fr) minmax(200px, 0.8fr) minmax(250px, 1fr); 
+        gap: 40px; 
+    } 
+ 
+    h1 { 
+        font-size: 2.5rem; 
+    } 
+} 
+ 
+@media (max-width: 900px) { 
+    .container { 
+        grid-template-columns: 1fr; 
+        gap: 30px; 
+    } 
+ 
+    .left-column, 
+    .right-column { 
+        padding: 0; 
+        border: none; 
+    } 
+ 
+    .middle-column { 
+        min-height: auto; 
+    } 
+ 
+    .flowchart-item { 
+        margin: 10px 0; 
+    } 
+ 
+    .arrow { 
+        display: none; 
+    } 
+ 
+    .learning-resources { 
+        padding: 20px; 
+    } 
+} 
+ 
+@media (max-width: 600px) { 
+    body { 
+        padding: 10px; 
+    } 
+ 
+    .container { 
+        padding: 10px; 
+    } 
+ 
+    h1 { 
+        font-size: 2rem; 
+        margin-bottom: 20px; 
+    } 
+ 
+    .card, 
+    .resource-card { 
+        padding: 20px; 
+    } 
+ 
+    .resource-grid { 
+        grid-template-columns: 1fr; 
+    } 
+ 
+    .learning-resources h2 { 
+        font-size: 1.8rem; 
+    } 
+ 
+    .resource-section h3 { 
+        font-size: 1.5rem; 
+    } 
+} 
+ 
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: transparent;
+    padding: 20px;
+}
+
+.career-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.career-card {
+    background: var(--card-bg-color);
+    border-radius: 15px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.career-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.career-card h2 {
+    color: var(--secondary-color);
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.career-card ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.career-card li {
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    padding-left: 20px;
+    position: relative;
+}
+
+.career-card li:before {
+    content: '➤';
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    color: var(--tertiary-color);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-background);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    margin: 20px auto;
+    padding: 20px;
+    width: 95%;
+    max-width: 1400px;
+    position: relative;
+    border-radius: var(--border-radius);
+}
+
+.close-btn {
+    position: absolute;
+    right: 25px;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .career-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        width: 100%;
+        margin: 0;
+        min-height: 100vh;
+        border-radius: 0;
+    }
+}
+
+.modal .career-title {
+    color: var(--tertiary-color);
+    font-size: 40px;
+    text-align: center;
+    font-weight: bold; 
+}

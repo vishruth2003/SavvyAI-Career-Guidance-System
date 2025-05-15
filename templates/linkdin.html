@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>LinkedIn Job Listings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            margin-top: 80px;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        .job {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .job h3 {
+            margin-top: 0;
+        }
+        .job p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LinkedIn Job Listings</h1>
+        <p>Total Jobs: {{ jobs['total'] }}</p>
+    </header>
+    <div class="container">
+        {% if jobs['data'] %}
+            {% for job in jobs['data'] %}
+                <div class="job">
+                    <h3>{{ job['title'] }}</h3>
+                    <p><strong>Company:</strong> {{ job['company']['name'] }}</p>
+                    <p><strong>Location:</strong> {{ job['location'] }}</p>
+                    <p><strong>URL:</strong> {{ job['company']['url'] }}</p>
+                    <p><strong>Benefits:</strong>{{ job['benefits'] }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No jobs found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

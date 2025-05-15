@@ -1,0 +1,83 @@
+<!--chatbot.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot - SavvyAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/chatbot.css') }}">
+</head>
+<body class="light-mode">
+    {% include 'header.html' %}
+
+    <!-- Hidden element to store user data -->
+    <div id="user-data" style="display: none;">{{ user | tojson | safe }}</div>
+
+    <section class="main-content">
+        <div class="greeting" role="heading" aria-level="2">Hello, <span class="gradient-text">{{ user.fullName if user else 'Guest' }}</span></div>
+        <div class="question" role="heading" aria-level="3">Let's begin</div>
+        <div class="chat-container" aria-live="polite" aria-relevant="additions removals">
+            <div id="chatbot"></div>
+            <div class="suggestions" aria-label="Suggested interests">
+                <button type="button" class="suggestion">
+                    <span class="suggestion-text">I would like to be an author</span>
+                    <span class="suggestion-icon">📚</span> <!-- Example icon, you can use any icon or image -->
+                </button>
+                <button type="button" class="suggestion">
+                    <span class="suggestion-text">I would like to be a neurosurgeon</span>
+                    <span class="suggestion-icon">🧠</span>
+                </button>
+                <button type="button" class="suggestion">
+                    <span class="suggestion-text">I would like to be a footballer</span>
+                    <span class="suggestion-icon">⚽</span>
+                </button>
+                <button type="button" class="suggestion">
+                    <span class="suggestion-text">I would like to be a product manager</span>
+                    <span class="suggestion-icon">📊</span>
+                </button>
+                <button type="button" class="suggestion">
+                    <span class="suggestion-text">I would like to be an author</span>
+                    <span class="suggestion-icon">📚</span> <!-- Example icon, you can use any icon or image -->
+                </button>
+                <button type="button" class="suggestion">
+                    <span class="suggestion-text">I would like to be a neurosurgeon</span>
+                    <span class="suggestion-icon">🧠</span>
+                </button>
+                <button type="button" class="suggestion">
+                    <span class="suggestion-text">I would like to be a footballer</span>
+                    <span class="suggestion-icon">⚽</span>
+                </button>
+                <button type="button" class="suggestion">
+                    <span class="suggestion-text">I would like to be a product manager</span>
+                    <span class="suggestion-icon">📊</span>
+                </button>
+                <button type="button" class="suggestion">
+                    <span class="suggestion-text">I would like to be a product manager</span>
+                    <span class="suggestion-icon">📊</span>
+                </button>
+            </div>
+        </div>
+        <form id="chat-form" role="form" aria-label="Chat input form">
+            <div class="input-container">
+                <input type="text" id="chat-input" placeholder="Type your own interests..." required aria-label="User interest input" autocomplete="off">
+                <button type="submit" id="send-button" aria-label="Send message">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send">
+                        <line x1="7" y1="12" x2="22" y2="12"></line>
+                        <polygon points="2 2, 22 12, 2 22, 7 12"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </form>
+
+        <div id="modal" class="modal" role="dialog" aria-modal="true" style="display: none;">
+            <div class="modal-content">
+                <p>Press continue to begin analysis...</p>
+                <button id="continue-button">Continue</button>
+            </div>
+        </div>
+    </section>
+    <script src="../static/scripts/chatbot.js"></script>
+    <script src="../static/scripts/header.js"></script>
+</body>
+</html>

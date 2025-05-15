@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - SavvyAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/results.css') }}">
+</head>
+<body class="light-mode">
+    <script id="user-data" type="application/json">
+        {{ user | tojson }}
+    </script>
+    {% include 'header.html' %}
+    <section class="main-content">
+        <div class="container">
+            <div class="heading1">Quiz Results</div>
+            {% if user %}
+                <div class="heading2">Well done, {{ user.fullName }}!</div>
+            {% endif %}
+            
+            <div class="score">{{ score_percentage | round(2) }}%</div>
+            
+            <div class="details">
+                <p>Total Questions: {{ total_questions }}</p>
+                <p>Correct Answers: {{ correct_answers }}</p>
+                <p>Wrong Answers: {{ wrong_answers }}</p>
+            </div>
+
+            <div class="detailed-results">
+                <h2>Detailed Analysis</h2>
+                {% for result in detailed_results %}
+                    <div class="question-card {% if result.is_correct %}correct{% else %}incorrect{% endif %}">
+                        <h3>Question {{ loop.index }}</h3>
+                        <p class="question-text">{{ result.question }}</p>
+                        
+                        <div class="options">
+                            {% for option in result.options %}
+                                <div class="option 
+                                    {% if option == result.selected_answer %}selected{% endif %}
+                                    {% if option == result.correct_answer %}correct{% endif %}">
+                                    {{ option }}
+                                    {% if option == result.selected_answer %}
+                                        <span class="marker selected">Your Answer</span>
+                                    {% endif %}
+                                    {% if option == result.correct_answer %}
+                                        <span class="marker correct">Correct Answer</span>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="career-container">
+                <h2>Career Suggestions</h2>
+                <button id="fetch-suggestions" class="suggestion-button">Fetch Career Suggestions</button>
+                <div id="suggestions" class="suggestions"></div>
+            </div>
+        
+            <div class="modal" id="loadingModal">
+                <div class="modal-content">
+                    <h3>Loading...</h3>
+                    <p>Please wait while we fetch your career suggestions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='scripts/results.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/header.js') }}"></script>
+</body>
+</html>

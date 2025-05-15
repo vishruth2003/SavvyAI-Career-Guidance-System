@@ -1,0 +1,86 @@
+.container {
+    width: 500px;
+    margin: 50px auto;
+  }
+  
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+  }
+  
+  .dropzone{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    border: 4px dashed rgb(117,112,112);
+    padding: 20px;
+    width: 90%; ;
+    /* position: absolute; */
+  }
+  
+  .dropzone h2{
+    font-size: 1.5rem; /* Increase font size here */
+    font-weight: 300;
+    color: rgb(117,112,112);
+    text-align: center;
+    margin-bottom: 10px 0;
+
+  }
+  
+  .upload-icon {
+    width: 60px;
+  }
+  
+  button {
+    padding: 12px;
+    font-size: medium;
+
+  }
+  
+  .btn-outline-info {
+    width: 135px;
+    height: 50px;
+    font-weight: bolder;
+    background: none;
+    border: 2px solid #17a2b8;
+    color: #17a2b8;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, border 0.3s;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+
+  }
+  
+  .btn-outline-info:hover {
+    background: #17a2b8;
+    color: #fff;
+  }
+  
+
+
+  @media screen and (max-width: 600px) {
+    .box {
+      width: 300px;
+    }
+  
+    .dropzone {
+      padding: 10px;
+      height: 300px;
+    }
+  
+    .dropzone h2 {
+      font-size: 1.5rem;
+    }
+  
+    button {
+      padding: 10px;
+      font-size: smaller;
+      margin-top: 25px;
+    }
+  }

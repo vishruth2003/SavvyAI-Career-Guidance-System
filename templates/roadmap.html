@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Roadmaps</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/roadmap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <script id="user-data" type="application/json">
+        {{ user | tojson }}
+    </script>
+
+    {% include 'header.html' %}
+    {% include 'sidebar.html' %}
+
+    <div class="body-container">
+        <h1 class="gradient-text">Detailed Roadmap</h1>
+        <div class="career-grid">
+            {% for career in careers %}
+            <div class="career-card" data-id="{{ career._id }}">
+                <h2>{{ career.career }}</h2><h3>Match: {{ career.percentage }}</h3>
+                <ul>
+                    {% for step in career.roadmap %}
+                    <li>{{ step }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal" id="flowchartModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 class="career-title"></h2>
+            <div class="container">
+                <div class="left-column"></div>
+                <div class="middle-column"></div>
+                <div class="right-column"></div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/roadmap.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/header.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/sidebar.js') }}"></script>
+</body>
+</html>

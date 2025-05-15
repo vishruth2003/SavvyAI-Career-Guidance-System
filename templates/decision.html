@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Decision</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/decision.css') }}">
+</head>
+<body class="light-mode">
+    <script id="user-data" type="application/json">
+        {{ user | tojson }}
+    </script>
+
+    {% include 'header.html' %}
+
+    <section class="main-content">
+        <div class="container">
+            <div class="heading1">Career Decision</div>
+            {% if user %}
+                <div class="heading2">Hi, {{ user.fullName }}!</div>
+            {% endif %}
+            <div class="options-container">
+                <button id="option1" class="option-button">I have a few career choices in mind</button>
+                <button id="option2" class="option-button" disabled style="opacity: 0.5;cursor: not-allowed;">I don't know what to do</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="../static/scripts/decision.js"></script>
+    <script src="../static/scripts/header.js"></script>
+</body>
+</html>

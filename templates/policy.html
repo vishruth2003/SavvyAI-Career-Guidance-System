@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/policy.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <script id="user-data" type="application/json">
+        {{ user | tojson }}
+    </script>
+
+    {% include 'header.html' %}
+    {% include 'sidebar.html' %}
+
+    <div class="body-container" style ="text-align: center;">
+        <h1 class="gradient-text">Government Policies & Schemes</h1>
+        <div class="policy-grid">
+            <!-- Policy Cards -->
+            {% for policy in policies %}
+            <div class="policy-card" data-id="{{ policy._id }}" >
+                <h2>{{ policy.title }}</h2>
+                <ul>
+                    {% for item in policy.details %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+
+            <!-- Additional Schemes -->
+            <div class="policy-card">
+                <h2><a href="https://www.ncs.gov.in/Pages/Search.aspx" target="_blank">National Career Service (NCS)</a></h2>
+                <p>
+                    The National Career Service (NCS) connects job seekers with employers and provides career counseling and skill training to reduce skill gaps. It promotes sustainable livelihoods and strengthens India's workforce for better job accessibility.
+                </p> 
+            </div>
+            <div class="policy-card">
+                <h2><a href="https://skillindiamission.in/" target="_blank">Skill India Mission</a></h2>
+                <p>
+                 This national initiative empowers Indian youth by providing market-relevant skills to enhance employability and productivity. It aims to equip young individuals with the skills needed to succeed in a dynamic job market​
+                </p>
+            </div>
+            <div class="policy-card">
+                <h2><a href="https://jss.gov.in/" target="_blank">Jan Shikshan Sansthan (JSS)</a></h2>
+                <p>
+                The Jan Shikshan Sansthan (JSS) provides vocational training to disadvantaged groups, including non-literates and school dropouts, focusing on rural areas. It enhances livelihoods and socio-economic conditions through relevant skill development.
+                </p>
+            </div>
+            <div class="policy-card">
+                <h2><a href="https://www.apprenticeshipindia.gov.in/" target="_blank">Apprenticeship India</a></h2>
+                <p>
+                The Apprenticeship India Scheme bridges the gap between education and skill development by promoting apprenticeship training across industries. It aims to create a skilled workforce through on-the-job training, boosting employability and productivity.
+                </p>
+            </div>
+            <div class="policy-card">
+                <h2><a href="https://www.msde.gov.in/en/schemes-initiatives/short-term-training/pmkvy-4.0" target="_blank">PMKVY 4.0</a></h2>
+                <p>
+                 Pradhan Mantri Kaushal Vikas Yojana 4.0 offers short-term training programs to certify millions of youth in industry-relevant skills. Its goal is to boost employability and foster entrepreneurship by equipping individuals with essential skills
+                </p>
+            </div>
+            <div class="policy-card">
+                <h2><a href="https://www.skillindiadigital.gov.in/home" target="_blank">Skill India Digital</a></h2>
+                <p>
+                 This initiative provides access to various digital resources and courses aimed at enhancing skills. It seeks to bridge skill gaps across industries by equipping individuals with job-ready skills, improving their employability in the rapidly evolving job market
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal" id="policyModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 class="policy-title"></h2>
+            <div class="container">
+                <div class="left-column"></div>
+                <div class="middle-column"></div>
+                <div class="right-column"></div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/policy.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/header.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/sidebar.js') }}"></script>
+</body>
+</html>

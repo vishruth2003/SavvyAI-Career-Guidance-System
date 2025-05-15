@@ -1,0 +1,391 @@
+/* Learning Resources Styles with Dark/Light Mode Support */
+:root {
+    --primary-color: #303134;
+    --secondary-color: #8ab4f8;
+    --tertiary-color: #FF416C;
+    --text-color: #eaeaea;
+    --bg-color: linear-gradient(135deg, #181818 0%, #333 100%);
+    --card-bg-color: #303134;
+    --border-color: #555555;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+    --hover-color: rgba(138, 180, 248, 0.1);
+    --transition-speed: 0.3s;
+    --border-radius: 12px;
+}
+
+body.light-mode {
+    --primary-color: #ffffff;
+    --secondary-color: #1a73e8;
+    --tertiary-color: #d93025;
+    --text-color: #202124;
+    --bg-color: linear-gradient(135deg, #f8f9fa 0%, #dbe0e4 100%);
+    --card-bg-color: #ffffff;
+    --border-color: #dadce0;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --hover-color: rgba(26, 115, 232, 0.1);
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+}
+
+.learning-resources{
+    font-family: 'Poppins', Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 20px;
+}
+
+h1.learning-container {
+    background: linear-gradient(90deg, var(--secondary-color), var(--tertiary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.learning-resources {
+    background: var(--card-bg-color);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.resource-section {
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.resource-section h3 {
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--tertiary-color);
+}
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.resource-card {
+    background: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-speed) ease;
+    border: 1px solid var(--border-color);
+}
+
+.view-more{
+    cursor: pointer;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    background: var(--hover-color);
+}
+
+.resource-card h4 {
+    color: var(--secondary-color);
+    margin: 0 0 15px 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.resource-card p {
+    color: var(--text-color);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.resource-card a {
+    display: inline-block;
+    color: var(--tertiary-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 0;
+    position: relative;
+}
+
+.resource-card a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--tertiary-color);
+    transition: width var(--transition-speed) ease;
+}
+
+.resource-card a:hover::after {
+    width: 100%;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensure the container spans the desired width */
+}
+
+.course-btn {
+    text-decoration: none;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+
+.career-section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.career-section:last-child {
+    margin-bottom: 0;
+}
+
+.career-title {
+    color: var(--secondary-color);
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--tertiary-color);
+    font-weight: 700;
+}
+
+@media (max-width: 900px) {
+    .learning-container {
+        padding: 10px;
+    }
+
+    .learning-resources {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .learning-container h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .resource-card {
+        padding: 20px;
+    }
+
+    .resource-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resource-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .career-title {
+        font-size: 1.4rem;
+    }
+}
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.modal-dialog {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-dialog {
+    transform: translateY(0);
+}
+
+.modal-content {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-title {
+    color: var(--tertiary-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+    opacity: 0.7;
+}
+
+.close-modal:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 25px;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    /* Ensure padding is maintained when scrolling */
+    box-sizing: border-box;
+    /* Hide default scrollbar for WebKit browsers */
+    scrollbar-width: thin;
+    /* Firefox */
+    scrollbar-color: var(--secondary-color) transparent;
+}
+
+/* Custom scrollbar styles for WebKit browsers (Chrome, Safari, Edge) */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+    margin: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+    opacity: 0.8;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--tertiary-color);
+}
+
+/* Hide scrollbar when not hovering for a cleaner look */
+.modal-body:not(:hover)::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    opacity: 0.5;
+}
+
+.modal-body p {
+    margin: 0 0 15px;
+    line-height: 1.6;
+}
+
+.modal-body p:last-child {
+    margin-bottom: 0;
+}
+
+.modal-body strong {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.modal-footer {
+    padding: 10px 25px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.modal-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    justify-content: space-between;
+}
+
+.modal-btn:hover {
+    transform: translateY(-2px);
+    background-color: var(--tertiary-color);
+    box-shadow: var(--shadow-md);
+    opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+    .modal-dialog {
+        width: 95%;
+        margin: 10px;
+    }
+
+    .modal-header {
+        padding: 15px 20px;
+    }
+
+    .modal-body {
+        padding: 20px;
+        max-height: calc(100vh - 160px);
+    }
+
+    .modal-footer {
+        padding: 15px 20px;
+        flex-direction: column;
+    }
+
+    .modal-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
